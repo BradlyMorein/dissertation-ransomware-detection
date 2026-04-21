@@ -1,0 +1,50 @@
+name: ransomware-detection
+channels:
+  - conda-forge
+dependencies:
+  # Python — pinned to 3.11 for broad library compatibility
+  - python=3.11
+
+  # Core scientific stack
+  - numpy=1.26.*
+  - pandas=2.2.*
+  - scipy=1.13.*
+  - scikit-learn=1.5.*
+
+  # Imbalanced learning (SMOTE etc.)
+  - imbalanced-learn=0.12.*
+
+  # Deep learning — CPU build (no NVIDIA GPU on this machine)
+  - tensorflow=2.16.*
+
+  # Data formats
+  - pyarrow=15.*           # Parquet support
+  - h5py                   # HDF5, used by Keras model saving
+
+  # Plotting
+  - matplotlib=3.8.*
+  - seaborn=0.13.*
+
+  # Notebooks and dev experience
+  - jupyterlab=4.*
+  - ipykernel
+  - ipywidgets
+
+  # Statistical testing
+  - statsmodels=0.14.*
+
+  # Utilities
+  - tqdm                   # progress bars for long loops
+  - joblib                 # serialising sklearn objects, parallelism
+  - pyyaml                 # config files
+
+  # Experiment tracking
+  - mlflow=2.14.*
+
+  # Code quality
+  - black                  # formatter
+  - ruff                   # linter
+  - pytest                 # unit tests
+
+  # pip-only packages (none strictly required for Week 1)
+  - pip

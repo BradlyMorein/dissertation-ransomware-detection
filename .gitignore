@@ -1,0 +1,79 @@
+# ============================================================
+# .gitignore for MSc dissertation
+# Principle: data and derived artefacts are NEVER committed;
+# only code, configs, small reference files, and documentation
+# ============================================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.ipynb_checkpoints/
+*.pyc
+
+# Virtual environments (should not exist here, but defensive)
+.venv/
+venv/
+env/
+
+# ============================================================
+# Data — never commit raw or processed data
+# ============================================================
+data/raw/
+data/interim/
+data/processed/
+data/external/
+*.csv
+*.tsv
+*.pcap
+*.pcapng
+
+# But DO commit data documentation and checksums
+!data/README.md
+!data/sha256sums.txt
+!data/**/*.md
+
+# Parquet, HDF5, model files handled by git-lfs where we want them,
+# but by default exclude to prevent accidents
+*.parquet
+*.h5
+*.keras
+*.pth
+*.joblib
+*.pkl
+
+# ============================================================
+# Experiments — keep configs, logs if small, checkpoints via LFS only
+# ============================================================
+experiments/*/scratch/
+experiments/*/tensorboard_logs/
+mlruns/
+wandb/
+
+# ============================================================
+# Editor and OS detritus
+# ============================================================
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ============================================================
+# Secrets — never commit credentials
+# ============================================================
+.env
+.env.*
+*.key
+*.pem
+credentials.json
+secrets.yaml
+
+# ============================================================
+# Build, cache, misc
+# ============================================================
+.cache/
+*.log
+*.tmp
