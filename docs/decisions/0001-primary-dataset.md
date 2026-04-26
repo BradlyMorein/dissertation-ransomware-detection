@@ -82,3 +82,21 @@ schedule grounds.
 - Engelen, G., Rimmer, V. & Joosen, W. (2021). Troubleshooting an
   Intrusion Detection Dataset: the CICIDS2017 Case Study. In *2021 IEEE
   Security and Privacy Workshops (SPW)* (pp. 7–12). IEEE.
+
+## Supervisor input (added 26 April 2026)
+
+Supervisor reviewed by email and endorsed Option 2 on 26 April 2026. Two
+refinements offered:
+
+1. **Framing of cross-dataset role.** Use of CSE-CIC-IDS2018 as the
+   secondary set should be framed as a deliberate test on "noisier
+   real-world data" — i.e. a positive feature of the methodology rather
+   than a limitation. This framing should be reflected in §2.6 (dataset
+   review) and §4.2 (primary dataset choice) of the dissertation.
+
+2. **Methodology chapter must explicitly explain the reasoning.** The
+   dataset choice and the corrections applied are to be described in
+   detail in the methodology chapter, with the rationale of this ADR
+   reflected in chapter prose.
+
+Status updated: **Accepted (supervisor confirmed 26 April 2026)**
