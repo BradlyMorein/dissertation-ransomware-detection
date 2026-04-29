@@ -14,3 +14,13 @@
 3db32a8e9a4da80aa15fd0bbf69733c8de8c6e6147fe279770eec1be6c263d65  Thursday-WorkingHours.csv
 59d60eff01526b511fa575a08a9a0e241674276adf1aa07471c947f7d733e19a  Tuesday-WorkingHours.csv
 820446eb19713031827a1893871e30fb9da4c3b21ad5cd15d9a2ef6686a37583  Wednesday-WorkingHours.csv
+
+# CIC-UNSW-NB15 (secondary dataset)
+# Source: https://cicresearch.ca/CICDataset/CIC-UNSW/ (registration required)
+# Acquired: 2026-04-29 via authenticated browser session
+# Provider: Canadian Institute for Cybersecurity, University of New Brunswick
+# Citation: Mohammadian, Lashkari & Ghorbani (2024), PST 2024
+025a94239f29521e154be3a65d65268404d4c58600b66b94a4235eae87dbd8b5  CICFlowMeter_out.csv
+60d55f4f8f1e72bdfa2e0c1c74c03ac301bd880af321fdad1ba453950a7aa16a  Data.csv
+5b2fcf31dc2d03ac6a07f8791858e55d86306f05442c3a4528bcc67301956a56  Label.csv
+5850f5b8e82f5a2980030f10819dd25b8ddff9c66f753ae27e818becbeb0df31  Readme.txt
