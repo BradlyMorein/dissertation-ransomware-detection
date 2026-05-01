@@ -20,14 +20,17 @@ env/
 # ============================================================
 # Data — never commit raw or processed data
 # ============================================================
-data/raw/
-data/interim/
-data/processed/
-data/external/
+data/raw/**
+data/interim/**
+data/processed/**
+data/external/**
 *.csv
 *.tsv
 *.pcap
 *.pcapng
+
+# Exception: commit cleaning manifests as part of the audit trail
+!data/processed/*/_clean_manifest.json
 
 # But DO commit data documentation and checksums
 !data/README.md
