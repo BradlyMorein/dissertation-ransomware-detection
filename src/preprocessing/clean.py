@@ -4,7 +4,7 @@ clean.py — Apply data-integrity filters to Engelen-cleaned CIC-IDS2017.
 Reads a Parquet file (one day's flows), applies the row and column drop
 rules established by EDA notebook 02, and writes a cleaned Parquet output.
 
-Drop rules (rationale in notebook 02 and Methodology chapter §4.3):
+Drop rules (rationale in notebook 02 and Methodology chapter 4.3):
 
 ROW DROPS (applied first, in order):
 1. Rows where Protocol == 0 (non-IP frame artefacts from CICFlowMeter,
@@ -39,6 +39,8 @@ from dataclasses import dataclass, asdict
 import numpy as np
 import pandas as pd
 
+from src.preprocessing._common import NEAR_CONSTANT_COLS, clean_dataframe
+
 
 # ---------- Configuration ---------- #
 
@@ -62,14 +64,6 @@ DAY_FILES = [
 # mismatch in cross-dataset evaluation; dropping on both would discard signal
 # on UNSW. My Decision: keep it in both datasets. Methodology chapter 4.3
 
-NEAR_CONSTANT_COLS = [
-    "Bwd URG Flags",
-    "URG Flag Count",
-    "Fwd URG Flags",
-    "ECE Flag Count",
-    "CWR Flag Count",
-]
-
 
 # ---------- Data structures ---------- #
 
@@ -88,48 +82,6 @@ class CleanResult:
 
 
 # ---------- Cleaning logic ---------- #
-
-def clean_dataframe(df: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
-    """Apply row and column drops to a flow DataFrame. Returns (cleaned_df, stats).
-
-    Stats dict has keys: rows_in, rows_out, cols_in, cols_out,
-    n_dropped_protocol_zero, n_dropped_nan_inf.
-    """
-    rows_in = len(df)
-    cols_in = df.shape[1]
-
-    # --- Row drops, sequentially with audit ---
-
-    # 1. Drop Protocol == 0 (non-IP frame artefacts)
-    protocol_zero_mask = df["Protocol"] == 0
-    n_dropped_protocol = int(protocol_zero_mask.sum())
-    df = df.loc[~protocol_zero_mask].copy()
-
-    # 2. Drop rows with NaN or +/-Inf in any numeric column
-    numeric = df.select_dtypes(include="number")
-    nan_mask = numeric.isna().any(axis=1)
-    inf_mask = numeric.apply(lambda c: np.isinf(c)).any(axis=1)
-    bad_row_mask = nan_mask | inf_mask
-    n_dropped_nan_inf = int(bad_row_mask.sum())
-    df = df.loc[~bad_row_mask].copy()
-
-    # --- Column drops ---
-
-    cols_to_drop = [c for c in NEAR_CONSTANT_COLS if c in df.columns]
-    df = df.drop(columns=cols_to_drop)
-
-    rows_out = len(df)
-    cols_out = df.shape[1]
-
-    stats = {
-        "rows_in": rows_in,
-        "rows_out": rows_out,
-        "cols_in": cols_in,
-        "cols_out": cols_out,
-        "n_dropped_protocol_zero": n_dropped_protocol,
-        "n_dropped_nan_inf": n_dropped_nan_inf,
-    }
-    return df, stats
 
 
 def clean_one(src_path: Path, dst_path: Path) -> CleanResult:

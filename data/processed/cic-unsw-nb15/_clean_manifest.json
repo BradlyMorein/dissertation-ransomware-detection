@@ -1,0 +1,53 @@
+{
+  "tool": "src/preprocessing/clean_unsw.py",
+  "source_directory": "data/raw/cic-unsw-nb15",
+  "destination_directory": "data/processed/cic-unsw-nb15",
+  "near_constant_columns_dropped": [
+    "Bwd URG Flags",
+    "URG Flag Count",
+    "Fwd URG Flags",
+    "ECE Flag Count",
+    "CWR Flag Count"
+  ],
+  "row_filters_applied": [
+    "any numeric feature is NaN or +/-Inf"
+  ],
+  "row_filters_skipped": [
+    "Protocol == 0 (no Protocol column in CIC-UNSW-NB15)"
+  ],
+  "label_encoding": {
+    "0": "Benign",
+    "1": "Analysis",
+    "2": "Backdoor",
+    "3": "DoS",
+    "4": "Exploits",
+    "5": "Fuzzers",
+    "6": "Generic",
+    "7": "Reconnaissance",
+    "8": "Shellcode",
+    "9": "Worms"
+  },
+  "result": {
+    "rows_in": 447915,
+    "rows_out": 447915,
+    "cols_in": 78,
+    "cols_out": 73,
+    "n_dropped_protocol_zero": 0,
+    "n_dropped_nan_inf": 0,
+    "n_dropped_total": 0,
+    "duration_seconds": 5.09,
+    "label_distribution": {
+      "Benign": 358332,
+      "Exploits": 30951,
+      "Fuzzers": 29613,
+      "Reconnaissance": 16735,
+      "Generic": 4632,
+      "DoS": 4467,
+      "Shellcode": 2102,
+      "Backdoor": 452,
+      "Analysis": 385,
+      "Worms": 246
+    },
+    "pct_retained": 100.0
+  }
+}

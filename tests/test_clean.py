@@ -14,7 +14,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from src.preprocessing.clean import clean_dataframe, NEAR_CONSTANT_COLS
+from src.preprocessing._common import clean_dataframe, NEAR_CONSTANT_COLS
 
 
 # ---------- Fixtures ---------- #
