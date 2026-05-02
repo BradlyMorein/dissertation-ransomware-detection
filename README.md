@@ -1,8 +1,9 @@
 # MSc Dissertation — Network-Based Ransomware Anomaly Detection
 
 A comparative evaluation of Random Forest, Autoencoder, and LSTM models for
-network-based ransomware anomaly detection, using the CSE-CIC-IDS2018 and
-UNSW-NB15 datasets.
+network-based ransomware anomaly detection, using the Engelen-cleaned
+CIC-IDS2017 dataset (primary) and CIC-UNSW-NB15 (secondary, for cross-dataset
+validation). See `docs/decisions/` for ADRs documenting the dataset choices.
 
 **Author:** Bradly Morein (UP2088701)
 **Programme:** MSc Cybersecurity and Data Forensics, University of Portsmouth
@@ -14,11 +15,12 @@ UNSW-NB15 datasets.
 ## Research questions
 
 - **RQ1** — How do Random Forest, Autoencoder, and LSTM compare in detecting
-  ransomware-indicative network anomalies on CSE-CIC-IDS2018?
+  ransomware-indicative network anomalies on the Engelen-cleaned CIC-IDS2017
+  dataset?
 - **RQ2** — Which architecture achieves the best balance between detection rate
   and false positive rate for practical deployment?
 - **RQ3** — To what extent do trained models generalise to unseen distributions
-  when validated on UNSW-NB15?
+  when validated on CIC-UNSW-NB15 (cross-dataset evaluation)?
 - **RQ4** — What is the inference latency of each model, and does it support
   real-time network traffic inspection?
 
