@@ -110,19 +110,19 @@ class TestRowDrops:
 class TestColumnDrops:
     """Column-level drop tests."""
 
-    def test_drops_all_six_near_constant_columns(self):
+    def test_drops_all_five_near_constant_columns(self):
         df = make_minimal_df(n_rows=10)
         df_clean, stats = clean_dataframe(df)
         for col in NEAR_CONSTANT_COLS:
             assert col not in df_clean.columns, f"{col} should have been dropped"
-        # cols_in includes the 6 near-constant; cols_out should be 6 fewer
-        assert stats["cols_out"] == stats["cols_in"] - 6
+        # cols_in includes the 5 near-constant; cols_out should be 5 fewer
+        assert stats["cols_out"] == stats["cols_in"] - 5
 
     def test_keeps_other_columns(self):
         df = make_minimal_df(n_rows=10)
         df_clean, _ = clean_dataframe(df)
         for col in ("Flow ID", "Src IP", "Protocol", "Flow Duration",
-                    "Total Fwd Packet", "Label"):
+                    "Total Fwd Packet", "Subflow Bwd Packets", "Label"):
             assert col in df_clean.columns
 
     def test_handles_missing_near_constant_column_gracefully(self):

@@ -55,12 +55,17 @@ DAY_FILES = [
     "Friday-WorkingHours.parquet",
 ]
 
-# 6 near-constant columns identified in notebook 02
+# 5 near-constant columns identified in notebook 02 and verified in notebook 04.
+# `Subflow Bwd Packets` was originally on this list (≥99.9% modal value in
+# CIC-IDS2017) but was found to be informative in CIC-UNSW-NB15 (n_unique=551,
+# modal_pct=97.0%). Dropping it on CIC-IDS2017 only would create feature-space
+# mismatch in cross-dataset evaluation; dropping on both would discard signal
+# on UNSW. My Decision: keep it in both datasets. Methodology chapter 4.3
+
 NEAR_CONSTANT_COLS = [
     "Bwd URG Flags",
     "URG Flag Count",
     "Fwd URG Flags",
-    "Subflow Bwd Packets",
     "ECE Flag Count",
     "CWR Flag Count",
 ]

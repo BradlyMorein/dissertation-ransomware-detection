@@ -6,7 +6,6 @@
     "Bwd URG Flags",
     "URG Flag Count",
     "Fwd URG Flags",
-    "Subflow Bwd Packets",
     "ECE Flag Count",
     "CWR Flag Count"
   ],
@@ -14,62 +13,62 @@
     "Protocol == 0",
     "any numeric feature is NaN or +/-Inf"
   ],
-  "duration_seconds_total": 10.65,
+  "duration_seconds_total": 10.5,
   "files": [
     {
       "file": "Monday-WorkingHours.parquet",
       "rows_in": 371749,
       "rows_out": 371373,
       "cols_in": 84,
-      "cols_out": 78,
+      "cols_out": 79,
       "n_dropped_protocol_zero": 316,
       "n_dropped_nan_inf": 60,
       "n_dropped_total": 376,
-      "duration_seconds": 2.07
+      "duration_seconds": 2.11
     },
     {
       "file": "Tuesday-WorkingHours.parquet",
       "rows_in": 322003,
       "rows_out": 321665,
       "cols_in": 84,
-      "cols_out": 78,
+      "cols_out": 79,
       "n_dropped_protocol_zero": 317,
       "n_dropped_nan_inf": 21,
       "n_dropped_total": 338,
-      "duration_seconds": 1.66
+      "duration_seconds": 1.63
     },
     {
       "file": "Wednesday-WorkingHours.parquet",
       "rows_in": 496779,
       "rows_out": 496378,
       "cols_in": 84,
-      "cols_out": 78,
+      "cols_out": 79,
       "n_dropped_protocol_zero": 331,
       "n_dropped_nan_inf": 70,
       "n_dropped_total": 401,
-      "duration_seconds": 2.36
+      "duration_seconds": 2.3
     },
     {
       "file": "Thursday-WorkingHours.parquet",
       "rows_in": 362368,
       "rows_out": 361720,
       "cols_in": 84,
-      "cols_out": 78,
+      "cols_out": 79,
       "n_dropped_protocol_zero": 361,
       "n_dropped_nan_inf": 287,
       "n_dropped_total": 648,
-      "duration_seconds": 1.71
+      "duration_seconds": 1.72
     },
     {
       "file": "Friday-WorkingHours.parquet",
       "rows_in": 547915,
       "rows_out": 547264,
       "cols_in": 84,
-      "cols_out": 78,
+      "cols_out": 79,
       "n_dropped_protocol_zero": 303,
       "n_dropped_nan_inf": 348,
       "n_dropped_total": 651,
-      "duration_seconds": 2.76
+      "duration_seconds": 2.64
     }
   ],
   "totals": {
