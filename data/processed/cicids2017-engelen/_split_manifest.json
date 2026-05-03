@@ -1,0 +1,39 @@
+{
+  "tool": "src/preprocessing/split.py",
+  "source_directory": "data/processed/cicids2017-engelen",
+  "destination_directory": "data/processed/cicids2017-engelen",
+  "random_seed": 42,
+  "split_strategy": "stratified random per-flow on binary is_attack",
+  "train_fraction": 0.7,
+  "val_fraction_of_remainder": 0.5,
+  "total_rows_in": 2098400,
+  "duration_seconds": 7.89,
+  "folds": [
+    {
+      "fold": "train",
+      "n_rows": 1468879,
+      "n_benign": 1158815,
+      "n_attack": 310064,
+      "pct_benign": 78.8911,
+      "pct_attack": 21.1089
+    },
+    {
+      "fold": "val",
+      "n_rows": 314760,
+      "n_benign": 248318,
+      "n_attack": 66442,
+      "pct_benign": 78.8912,
+      "pct_attack": 21.1088
+    },
+    {
+      "fold": "test",
+      "n_rows": 314761,
+      "n_benign": 248318,
+      "n_attack": 66443,
+      "pct_benign": 78.891,
+      "pct_attack": 21.109
+    }
+  ],
+  "fold_total_rows": 2098400,
+  "fold_total_matches_input": true
+}
