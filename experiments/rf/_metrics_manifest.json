@@ -1,0 +1,264 @@
+{
+  "tool": "src/models/random_forest.py",
+  "splits_directory": "data/processed/cicids2017-engelen",
+  "experiment_directory": "experiments/rf",
+  "hyperparameters": {
+    "n_estimators": 200,
+    "max_depth": 20,
+    "class_weight": "balanced",
+    "n_jobs": -1,
+    "random_state": 42,
+    "verbose": 1
+  },
+  "n_features": 71,
+  "feature_names": [
+    "Flow Duration",
+    "Total Fwd Packet",
+    "Total Bwd packets",
+    "Total Length of Fwd Packet",
+    "Total Length of Bwd Packet",
+    "Fwd Packet Length Max",
+    "Fwd Packet Length Min",
+    "Fwd Packet Length Mean",
+    "Fwd Packet Length Std",
+    "Bwd Packet Length Max",
+    "Bwd Packet Length Min",
+    "Bwd Packet Length Mean",
+    "Bwd Packet Length Std",
+    "Flow Bytes/s",
+    "Flow Packets/s",
+    "Flow IAT Mean",
+    "Flow IAT Std",
+    "Flow IAT Max",
+    "Flow IAT Min",
+    "Fwd IAT Total",
+    "Fwd IAT Mean",
+    "Fwd IAT Std",
+    "Fwd IAT Max",
+    "Fwd IAT Min",
+    "Bwd IAT Total",
+    "Bwd IAT Mean",
+    "Bwd IAT Std",
+    "Bwd IAT Max",
+    "Bwd IAT Min",
+    "Fwd PSH Flags",
+    "Bwd PSH Flags",
+    "Fwd Header Length",
+    "Bwd Header Length",
+    "Fwd Packets/s",
+    "Bwd Packets/s",
+    "Packet Length Min",
+    "Packet Length Max",
+    "Packet Length Mean",
+    "Packet Length Std",
+    "Packet Length Variance",
+    "FIN Flag Count",
+    "SYN Flag Count",
+    "RST Flag Count",
+    "PSH Flag Count",
+    "ACK Flag Count",
+    "Down/Up Ratio",
+    "Average Packet Size",
+    "Fwd Segment Size Avg",
+    "Bwd Segment Size Avg",
+    "Fwd Bytes/Bulk Avg",
+    "Fwd Packet/Bulk Avg",
+    "Fwd Bulk Rate Avg",
+    "Bwd Bytes/Bulk Avg",
+    "Bwd Packet/Bulk Avg",
+    "Bwd Bulk Rate Avg",
+    "Subflow Fwd Packets",
+    "Subflow Fwd Bytes",
+    "Subflow Bwd Packets",
+    "Subflow Bwd Bytes",
+    "FWD Init Win Bytes",
+    "Bwd Init Win Bytes",
+    "Fwd Act Data Pkts",
+    "Fwd Seg Size Min",
+    "Active Mean",
+    "Active Std",
+    "Active Max",
+    "Active Min",
+    "Idle Mean",
+    "Idle Std",
+    "Idle Max",
+    "Idle Min"
+  ],
+  "training": {
+    "n_train_samples": 1468879,
+    "fit_seconds": 234.18
+  },
+  "validation": {
+    "n_val_samples": 314760,
+    "accuracy": 0.9917
+  },
+  "test": {
+    "binary": {
+      "accuracy": 0.9917079943194995,
+      "precision": 0.9626183125335188,
+      "recall": 0.999533434673329,
+      "f1": 0.9807286205827193,
+      "roc_auc": 0.9998087304162078,
+      "pr_auc": 0.9992590509950111,
+      "fpr": 0.01038587617490476,
+      "inference_ms_median": 24.772361499799445,
+      "inference_ms_p95": 26.948634699601822,
+      "n_test_samples": 314761,
+      "n_test_attack": 66443,
+      "n_test_benign": 248318
+    },
+    "per_class": {
+      "BENIGN": {
+        "n": 248318,
+        "n_correct": 245739,
+        "n_missed": 2579,
+        "recall": 0.9896
+      },
+      "PortScan": {
+        "n": 23937,
+        "n_correct": 23934,
+        "n_missed": 3,
+        "recall": 0.9999
+      },
+      "DoS Hulk": {
+        "n": 23691,
+        "n_correct": 23690,
+        "n_missed": 1,
+        "recall": 1.0
+      },
+      "DDoS": {
+        "n": 14349,
+        "n_correct": 14349,
+        "n_missed": 0,
+        "recall": 1.0
+      },
+      "DoS GoldenEye": {
+        "n": 1160,
+        "n_correct": 1160,
+        "n_missed": 0,
+        "recall": 1.0
+      },
+      "DoS slowloris": {
+        "n": 586,
+        "n_correct": 585,
+        "n_missed": 1,
+        "recall": 0.9983
+      },
+      "FTP-Patator": {
+        "n": 542,
+        "n_correct": 542,
+        "n_missed": 0,
+        "recall": 1.0
+      },
+      "DoS Slowhttptest - Attempted": {
+        "n": 502,
+        "n_correct": 501,
+        "n_missed": 1,
+        "recall": 0.998
+      },
+      "SSH-Patator": {
+        "n": 424,
+        "n_correct": 421,
+        "n_missed": 3,
+        "recall": 0.9929
+      },
+      "DoS Slowhttptest": {
+        "n": 282,
+        "n_correct": 282,
+        "n_missed": 0,
+        "recall": 1.0
+      },
+      "DoS slowloris - Attempted": {
+        "n": 271,
+        "n_correct": 271,
+        "n_missed": 0,
+        "recall": 1.0
+      },
+      "Bot - Attempted": {
+        "n": 209,
+        "n_correct": 195,
+        "n_missed": 14,
+        "recall": 0.933
+      },
+      "Web Attack - Brute Force - Attempted": {
+        "n": 177,
+        "n_correct": 176,
+        "n_missed": 1,
+        "recall": 0.9944
+      },
+      "Bot": {
+        "n": 94,
+        "n_correct": 93,
+        "n_missed": 1,
+        "recall": 0.9894
+      },
+      "DoS Hulk - Attempted": {
+        "n": 85,
+        "n_correct": 84,
+        "n_missed": 1,
+        "recall": 0.9882
+      },
+      "Web Attack - XSS - Attempted": {
+        "n": 84,
+        "n_correct": 83,
+        "n_missed": 1,
+        "recall": 0.9881
+      },
+      "Web Attack - Brute Force": {
+        "n": 22,
+        "n_correct": 22,
+        "n_missed": 0,
+        "recall": 1.0
+      },
+      "DoS GoldenEye - Attempted": {
+        "n": 9,
+        "n_correct": 9,
+        "n_missed": 0,
+        "recall": 1.0
+      },
+      "Infiltration": {
+        "n": 7,
+        "n_correct": 6,
+        "n_missed": 1,
+        "recall": 0.8571
+      },
+      "Web Attack - XSS": {
+        "n": 5,
+        "n_correct": 3,
+        "n_missed": 2,
+        "recall": 0.6
+      },
+      "Infiltration - Attempted": {
+        "n": 2,
+        "n_correct": 1,
+        "n_missed": 1,
+        "recall": 0.5
+      },
+      "FTP-Patator - Attempted": {
+        "n": 2,
+        "n_correct": 2,
+        "n_missed": 0,
+        "recall": 1.0
+      },
+      "SSH-Patator - Attempted": {
+        "n": 1,
+        "n_correct": 1,
+        "n_missed": 0,
+        "recall": 1.0
+      },
+      "Web Attack - Sql Injection": {
+        "n": 1,
+        "n_correct": 1,
+        "n_missed": 0,
+        "recall": 1.0
+      },
+      "Heartbleed": {
+        "n": 1,
+        "n_correct": 1,
+        "n_missed": 0,
+        "recall": 1.0
+      }
+    },
+    "bulk_predict_seconds": 1.026
+  }
+}
