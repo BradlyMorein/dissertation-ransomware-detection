@@ -255,7 +255,7 @@ class TestHyperparameters:
     def test_random_state_is_42(self):
         assert HYPERPARAMS["random_state"] == 42
 
-    def test_early_stopping_dissabled(self):
+    def test_early_stopping_disabled(self):
         assert HYPERPARAMS["early_stopping"] is False
 
     def test_threshold_percentile_is_95(self):
