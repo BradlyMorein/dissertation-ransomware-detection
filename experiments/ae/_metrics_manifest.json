@@ -1,0 +1,201 @@
+{
+  "tool": "src/models/autoencoder.py",
+  "splits_directory": "data/processed/cicids2017-engelen",
+  "experiment_directory": "experiments/ae",
+  "hyperparameters": {
+    "hidden_layer_sizes": [
+      32,
+      16,
+      32
+    ],
+    "activation": "relu",
+    "solver": "adam",
+    "learning_rate_init": 0.001,
+    "max_iter": 200,
+    "early_stopping": false,
+    "validation_fraction": 0.1,
+    "n_iter_no_change": 10,
+    "random_state": 42
+  },
+  "n_features": 71,
+  "training": {
+    "filter": "Monday-only benign",
+    "n_train_samples": 259858,
+    "fit_seconds": 45.68,
+    "iterations_completed": 48,
+    "final_loss": 0.003967167463553175
+  },
+  "threshold": {
+    "method": "95.0th percentile of validation benign error",
+    "value": 0.0970091284551957,
+    "n_val_benign_used": 248318
+  },
+  "test": {
+    "binary": {
+      "accuracy": 0.8318279583557048,
+      "precision": 0.6749190728991324,
+      "recall": 0.3922459852806165,
+      "f1": 0.49614498657884215,
+      "roc_auc": 0.9203888578211408,
+      "pr_auc": 0.5925172411882241,
+      "fpr": 0.05055211462721188,
+      "inference_ms_median": NaN,
+      "inference_ms_p95": NaN,
+      "n_test_samples": 314761,
+      "n_test_attack": 66443,
+      "n_test_benign": 248318
+    },
+    "per_class": {
+      "BENIGN": {
+        "n": 248318,
+        "n_correct": 235765,
+        "n_missed": 12553,
+        "recall": 0.9494
+      },
+      "PortScan": {
+        "n": 23937,
+        "n_correct": 23848,
+        "n_missed": 89,
+        "recall": 0.9963
+      },
+      "DoS Hulk": {
+        "n": 23691,
+        "n_correct": 573,
+        "n_missed": 23118,
+        "recall": 0.0242
+      },
+      "DDoS": {
+        "n": 14349,
+        "n_correct": 367,
+        "n_missed": 13982,
+        "recall": 0.0256
+      },
+      "DoS GoldenEye": {
+        "n": 1160,
+        "n_correct": 44,
+        "n_missed": 1116,
+        "recall": 0.0379
+      },
+      "DoS slowloris": {
+        "n": 586,
+        "n_correct": 516,
+        "n_missed": 70,
+        "recall": 0.8805
+      },
+      "FTP-Patator": {
+        "n": 542,
+        "n_correct": 0,
+        "n_missed": 542,
+        "recall": 0.0
+      },
+      "DoS Slowhttptest - Attempted": {
+        "n": 502,
+        "n_correct": 499,
+        "n_missed": 3,
+        "recall": 0.994
+      },
+      "SSH-Patator": {
+        "n": 424,
+        "n_correct": 0,
+        "n_missed": 424,
+        "recall": 0.0
+      },
+      "DoS Slowhttptest": {
+        "n": 282,
+        "n_correct": 107,
+        "n_missed": 175,
+        "recall": 0.3794
+      },
+      "DoS slowloris - Attempted": {
+        "n": 271,
+        "n_correct": 12,
+        "n_missed": 259,
+        "recall": 0.0443
+      },
+      "Bot - Attempted": {
+        "n": 209,
+        "n_correct": 0,
+        "n_missed": 209,
+        "recall": 0.0
+      },
+      "Web Attack - Brute Force - Attempted": {
+        "n": 177,
+        "n_correct": 0,
+        "n_missed": 177,
+        "recall": 0.0
+      },
+      "Bot": {
+        "n": 94,
+        "n_correct": 2,
+        "n_missed": 92,
+        "recall": 0.0213
+      },
+      "DoS Hulk - Attempted": {
+        "n": 85,
+        "n_correct": 75,
+        "n_missed": 10,
+        "recall": 0.8824
+      },
+      "Web Attack - XSS - Attempted": {
+        "n": 84,
+        "n_correct": 0,
+        "n_missed": 84,
+        "recall": 0.0
+      },
+      "Web Attack - Brute Force": {
+        "n": 22,
+        "n_correct": 0,
+        "n_missed": 22,
+        "recall": 0.0
+      },
+      "DoS GoldenEye - Attempted": {
+        "n": 9,
+        "n_correct": 9,
+        "n_missed": 0,
+        "recall": 1.0
+      },
+      "Infiltration": {
+        "n": 7,
+        "n_correct": 7,
+        "n_missed": 0,
+        "recall": 1.0
+      },
+      "Web Attack - XSS": {
+        "n": 5,
+        "n_correct": 0,
+        "n_missed": 5,
+        "recall": 0.0
+      },
+      "Infiltration - Attempted": {
+        "n": 2,
+        "n_correct": 0,
+        "n_missed": 2,
+        "recall": 0.0
+      },
+      "FTP-Patator - Attempted": {
+        "n": 2,
+        "n_correct": 1,
+        "n_missed": 1,
+        "recall": 0.5
+      },
+      "SSH-Patator - Attempted": {
+        "n": 1,
+        "n_correct": 1,
+        "n_missed": 0,
+        "recall": 1.0
+      },
+      "Web Attack - Sql Injection": {
+        "n": 1,
+        "n_correct": 0,
+        "n_missed": 1,
+        "recall": 0.0
+      },
+      "Heartbleed": {
+        "n": 1,
+        "n_correct": 1,
+        "n_missed": 0,
+        "recall": 1.0
+      }
+    }
+  }
+}
