@@ -1,0 +1,49 @@
+{
+  "tool": "src/preprocessing/sequences.py",
+  "splits_directory": "data/processed/cicids2017-engelen",
+  "sequence_length": 10,
+  "label_rule": "majority vote: >= 6 of 10 flows = attack",
+  "grouping": "by 'Src IP', sorted by 'Timestamp'",
+  "windowing": "non-overlapping",
+  "folds": [
+    {
+      "fold": "train",
+      "n_flows_in": 1468879,
+      "n_sources_in": 34,
+      "n_sources_with_min_flows": 14,
+      "n_sources_dropped": 20,
+      "n_sequences_out": 146876,
+      "n_flows_used": 1468760,
+      "n_flows_dropped": 119,
+      "n_attack_sequences": 30928,
+      "n_benign_sequences": 115948,
+      "pct_attack_sequences": 21.0572
+    },
+    {
+      "fold": "val",
+      "n_flows_in": 314760,
+      "n_sources_in": 21,
+      "n_sources_with_min_flows": 14,
+      "n_sources_dropped": 7,
+      "n_sequences_out": 31468,
+      "n_flows_used": 314680,
+      "n_flows_dropped": 80,
+      "n_attack_sequences": 6621,
+      "n_benign_sequences": 24847,
+      "pct_attack_sequences": 21.0404
+    },
+    {
+      "fold": "test",
+      "n_flows_in": 314761,
+      "n_sources_in": 20,
+      "n_sources_with_min_flows": 14,
+      "n_sources_dropped": 6,
+      "n_sequences_out": 31470,
+      "n_flows_used": 314700,
+      "n_flows_dropped": 61,
+      "n_attack_sequences": 6620,
+      "n_benign_sequences": 24850,
+      "pct_attack_sequences": 21.0359
+    }
+  ]
+}
