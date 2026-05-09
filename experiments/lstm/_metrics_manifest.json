@@ -1,0 +1,45 @@
+{
+  "tool": "notebooks/lstm_train_colab.ipynb",
+  "framework": "PyTorch",
+  "torch_version": "2.10.0+cu128",
+  "device": "cuda",
+  "hyperparameters": {
+    "n_features": 71,
+    "hidden_size": 128,
+    "n_layers": 1,
+    "dropout": 0.2,
+    "n_epochs": 20,
+    "batch_size": 256,
+    "learning_rate": 0.001,
+    "random_state": 42,
+    "pos_weight": 3.748965263366699,
+    "bidirectional": false
+  },
+  "training": {
+    "n_train_sequences": 146876,
+    "n_val_sequences": 31468,
+    "total_seconds": 45.4,
+    "final_train_loss": 0.003857542612311635,
+    "final_val_loss": 0.004640927361145156,
+    "final_val_accuracy": 0.999364433710436
+  },
+  "test": {
+    "binary": {
+      "accuracy": 0.9993962503972037,
+      "precision": 0.9978880675818373,
+      "recall": 0.9992447129909365,
+      "f1": 0.9985659295041135,
+      "roc_auc": 0.9999662385187257,
+      "pr_auc": 0.9998667483470551,
+      "fpr": 0.0005633802816901409,
+      "n_test_samples": 31470,
+      "n_test_attack": 6620,
+      "n_test_benign": 24850,
+      "tn": 24836,
+      "fp": 14,
+      "fn": 5,
+      "tp": 6615,
+      "bulk_predict_seconds": 0.337
+    }
+  }
+}
