@@ -119,7 +119,7 @@ RF seed in ADR 0004.
   is the rigorous comparable metric — both models rank flows similarly
   well, but the binary thresholding regime is what differs.
 
-- **Methodology chapter 4.7 must explicitly report:**
+- **Methodology chapter §3.4.2 must explicitly report:**
   - The five-feature CICFlowMeter clipping decision.
   - The log1p preprocessing rationale.
   - The 95th percentile threshold rule and its trade-off.

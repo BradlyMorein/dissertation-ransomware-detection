@@ -124,7 +124,7 @@ issue, not a bug. Two principled options were considered:
 - Report both bulk and per-call extremes with explicit explanation.
   Honest, less work.
 
-Option B was chosen for schedule reasons. The Methodology chapter §4.6
+Option B was chosen for schedule reasons. The Methodology chapter §3.4.2
 explicitly acknowledges that real-world deployment latency falls between
 the two extremes and is determined by the deployment layer's batching
 policy, which is outside the scope of this work.
@@ -140,7 +140,7 @@ policy, which is outside the scope of this work.
   cross-dataset experiment loads `experiments/rf/model.joblib` and
   applies it directly to the UNSW Parquet without retraining.
 
-- **Methodology chapter 4.6** must report all six decisions explicitly,
+- **Methodology chapter §3.4.2** must report all six decisions explicitly,
   with rationale. Each decision becomes a paragraph or bullet point in
   the chapter draft.
 

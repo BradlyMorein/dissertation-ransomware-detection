@@ -55,7 +55,7 @@ cross-dataset validation in Week 7 experiments.
 - Chapter 2 (Literature Review) §2.6 — discussion of dataset critiques
   expanded to cover CIC-UNSW-NB15 alongside the primary dataset and the
   rationale for CIC-augmented over original UNSW-NB15.
-- Chapter 4 (Methodology) §4.2 — secondary dataset description updated.
+- Chapter 3 (Methodology) §3.3.2 — secondary dataset description updated.
   Cross-dataset claim must explicitly note that the experimental design
   isolates data-distribution shift by holding feature pipeline constant.
 - Repository structure — `data/raw/cic-unsw-nb15/` replaces the previous

@@ -57,7 +57,7 @@ with documented limitations.
 - Chapter 2 (Literature Review) §2.6 — discussion of dataset critiques
   expanded to cover both 2017 and 2018, with Engelen positioned as the
   primary cleaning authority for 2017.
-- Chapter 4 (Methodology) §4.2 — primary dataset description updated.
+- Chapter 3 (Methodology) §3.3.1 — primary dataset description updated.
 - Repository structure — data/raw/cicids2017-engelen/ replaces
   data/raw/cse-cic-ids2018/ as the primary data location;
   data/raw/cse-cic-ids2018/ retained for the cross-dataset role.

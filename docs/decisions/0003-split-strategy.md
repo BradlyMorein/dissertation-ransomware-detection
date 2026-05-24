@@ -67,7 +67,7 @@ to support per-class evaluation in Chapter 5.
   `data/processed/cicids2017-engelen/`. Models load from these Parquets
   rather than from the per-day cleaned files.
 
-- **Methodology chapter 4.4** must explicitly state and justify the split
+- **Methodology chapter §3.5.1** must explicitly state and justify the split
   approach, including the rationale for stratified random over chronological
   and for binary over multi-class stratification.
 
