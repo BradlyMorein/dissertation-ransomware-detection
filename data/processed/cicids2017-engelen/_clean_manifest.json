@@ -13,7 +13,7 @@
     "Protocol == 0",
     "any numeric feature is NaN or +/-Inf"
   ],
-  "duration_seconds_total": 10.28,
+  "duration_seconds_total": 10.4,
   "files": [
     {
       "file": "Monday-WorkingHours.parquet",
@@ -24,7 +24,7 @@
       "n_dropped_protocol_zero": 316,
       "n_dropped_nan_inf": 60,
       "n_dropped_total": 376,
-      "duration_seconds": 1.92
+      "duration_seconds": 2.1
     },
     {
       "file": "Tuesday-WorkingHours.parquet",
@@ -35,7 +35,7 @@
       "n_dropped_protocol_zero": 317,
       "n_dropped_nan_inf": 21,
       "n_dropped_total": 338,
-      "duration_seconds": 1.61
+      "duration_seconds": 1.56
     },
     {
       "file": "Wednesday-WorkingHours.parquet",
@@ -46,7 +46,7 @@
       "n_dropped_protocol_zero": 331,
       "n_dropped_nan_inf": 70,
       "n_dropped_total": 401,
-      "duration_seconds": 2.27
+      "duration_seconds": 2.38
     },
     {
       "file": "Thursday-WorkingHours.parquet",
@@ -57,7 +57,7 @@
       "n_dropped_protocol_zero": 361,
       "n_dropped_nan_inf": 287,
       "n_dropped_total": 648,
-      "duration_seconds": 1.7
+      "duration_seconds": 1.67
     },
     {
       "file": "Friday-WorkingHours.parquet",
@@ -68,7 +68,7 @@
       "n_dropped_protocol_zero": 303,
       "n_dropped_nan_inf": 348,
       "n_dropped_total": 651,
-      "duration_seconds": 2.67
+      "duration_seconds": 2.59
     }
   ],
   "totals": {

@@ -35,7 +35,7 @@
     "n_dropped_protocol_zero": 0,
     "n_dropped_nan_inf": 0,
     "n_dropped_total": 0,
-    "duration_seconds": 5.09,
+    "duration_seconds": 5.02,
     "label_distribution": {
       "Benign": 358332,
       "Exploits": 30951,
