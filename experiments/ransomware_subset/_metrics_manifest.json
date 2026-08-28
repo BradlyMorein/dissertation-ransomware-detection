@@ -1,0 +1,404 @@
+{
+  "tool": "src/evaluation/ransomware_subset.py",
+  "mapping_source": "Methodology chapter \u00a73.3.3",
+  "attempted_variants": "included as instances of their parent class",
+  "metric": "recall only; the subset contains no benign flows",
+  "class_mapping": {
+    "cicids2017": {
+      "PortScan": "reconnaissance",
+      "PortScan - Attempted": "reconnaissance",
+      "FTP-Patator": "brute-force credential access",
+      "FTP-Patator - Attempted": "brute-force credential access",
+      "SSH-Patator": "brute-force credential access",
+      "SSH-Patator - Attempted": "brute-force credential access",
+      "Bot": "command-and-control beaconing",
+      "Bot - Attempted": "command-and-control beaconing",
+      "Infiltration": "lateral movement",
+      "Infiltration - Attempted": "lateral movement"
+    },
+    "cic-unsw-nb15": {
+      "Reconnaissance": "internal network scanning",
+      "Exploits": "exploitation for initial access",
+      "Shellcode": "exploit payload delivery",
+      "Backdoor": "persistent unauthorised access",
+      "Worms": "self-propagation"
+    }
+  },
+  "within_dataset": {
+    "dataset": "CIC-IDS2017 (Engelen-cleaned) test fold",
+    "rf": {
+      "unit": "flow",
+      "per_class": [
+        {
+          "label": "PortScan",
+          "phase": "reconnaissance",
+          "n": 23937,
+          "n_detected": 23934,
+          "recall": 0.9999
+        },
+        {
+          "label": "PortScan - Attempted",
+          "phase": "reconnaissance",
+          "n": 0,
+          "n_detected": 0,
+          "recall": null
+        },
+        {
+          "label": "FTP-Patator",
+          "phase": "brute-force credential access",
+          "n": 542,
+          "n_detected": 542,
+          "recall": 1.0
+        },
+        {
+          "label": "FTP-Patator - Attempted",
+          "phase": "brute-force credential access",
+          "n": 2,
+          "n_detected": 2,
+          "recall": 1.0
+        },
+        {
+          "label": "SSH-Patator",
+          "phase": "brute-force credential access",
+          "n": 424,
+          "n_detected": 421,
+          "recall": 0.9929
+        },
+        {
+          "label": "SSH-Patator - Attempted",
+          "phase": "brute-force credential access",
+          "n": 1,
+          "n_detected": 1,
+          "recall": 1.0
+        },
+        {
+          "label": "Bot",
+          "phase": "command-and-control beaconing",
+          "n": 94,
+          "n_detected": 93,
+          "recall": 0.9894
+        },
+        {
+          "label": "Bot - Attempted",
+          "phase": "command-and-control beaconing",
+          "n": 209,
+          "n_detected": 195,
+          "recall": 0.933
+        },
+        {
+          "label": "Infiltration",
+          "phase": "lateral movement",
+          "n": 7,
+          "n_detected": 6,
+          "recall": 0.8571
+        },
+        {
+          "label": "Infiltration - Attempted",
+          "phase": "lateral movement",
+          "n": 2,
+          "n_detected": 1,
+          "recall": 0.5
+        }
+      ],
+      "summary": {
+        "n": 25218,
+        "n_detected": 25195,
+        "recall": 0.9991,
+        "largest_class": "PortScan",
+        "excluding_largest": {
+          "n": 1281,
+          "n_detected": 1261,
+          "recall": 0.9844
+        }
+      }
+    },
+    "ae": {
+      "unit": "flow",
+      "per_class": [
+        {
+          "label": "PortScan",
+          "phase": "reconnaissance",
+          "n": 23937,
+          "n_detected": 23848,
+          "recall": 0.9963
+        },
+        {
+          "label": "PortScan - Attempted",
+          "phase": "reconnaissance",
+          "n": 0,
+          "n_detected": 0,
+          "recall": null
+        },
+        {
+          "label": "FTP-Patator",
+          "phase": "brute-force credential access",
+          "n": 542,
+          "n_detected": 0,
+          "recall": 0.0
+        },
+        {
+          "label": "FTP-Patator - Attempted",
+          "phase": "brute-force credential access",
+          "n": 2,
+          "n_detected": 1,
+          "recall": 0.5
+        },
+        {
+          "label": "SSH-Patator",
+          "phase": "brute-force credential access",
+          "n": 424,
+          "n_detected": 0,
+          "recall": 0.0
+        },
+        {
+          "label": "SSH-Patator - Attempted",
+          "phase": "brute-force credential access",
+          "n": 1,
+          "n_detected": 1,
+          "recall": 1.0
+        },
+        {
+          "label": "Bot",
+          "phase": "command-and-control beaconing",
+          "n": 94,
+          "n_detected": 2,
+          "recall": 0.0213
+        },
+        {
+          "label": "Bot - Attempted",
+          "phase": "command-and-control beaconing",
+          "n": 209,
+          "n_detected": 0,
+          "recall": 0.0
+        },
+        {
+          "label": "Infiltration",
+          "phase": "lateral movement",
+          "n": 7,
+          "n_detected": 7,
+          "recall": 1.0
+        },
+        {
+          "label": "Infiltration - Attempted",
+          "phase": "lateral movement",
+          "n": 2,
+          "n_detected": 0,
+          "recall": 0.0
+        }
+      ],
+      "summary": {
+        "n": 25218,
+        "n_detected": 23859,
+        "recall": 0.9461,
+        "largest_class": "PortScan",
+        "excluding_largest": {
+          "n": 1281,
+          "n_detected": 11,
+          "recall": 0.0086
+        }
+      }
+    },
+    "lstm": {
+      "unit": "sequence of 10 flows",
+      "class_attribution": "modal non-BENIGN label within each sequence",
+      "sequence_homogeneity": {
+        "n_attack_sequences": 6620,
+        "distinct_attack_classes_per_sequence": {
+          "1": 6443,
+          "2": 175,
+          "3": 2
+        },
+        "pct_single_class": 97.33
+      },
+      "per_class": [
+        {
+          "label": "PortScan",
+          "phase": "reconnaissance",
+          "n": 2394,
+          "n_detected": 2390,
+          "recall": 0.9983
+        },
+        {
+          "label": "PortScan - Attempted",
+          "phase": "reconnaissance",
+          "n": 0,
+          "n_detected": 0,
+          "recall": null
+        },
+        {
+          "label": "FTP-Patator",
+          "phase": "brute-force credential access",
+          "n": 54,
+          "n_detected": 54,
+          "recall": 1.0
+        },
+        {
+          "label": "FTP-Patator - Attempted",
+          "phase": "brute-force credential access",
+          "n": 0,
+          "n_detected": 0,
+          "recall": null
+        },
+        {
+          "label": "SSH-Patator",
+          "phase": "brute-force credential access",
+          "n": 43,
+          "n_detected": 43,
+          "recall": 1.0
+        },
+        {
+          "label": "SSH-Patator - Attempted",
+          "phase": "brute-force credential access",
+          "n": 0,
+          "n_detected": 0,
+          "recall": null
+        },
+        {
+          "label": "Bot",
+          "phase": "command-and-control beaconing",
+          "n": 1,
+          "n_detected": 1,
+          "recall": 1.0
+        },
+        {
+          "label": "Bot - Attempted",
+          "phase": "command-and-control beaconing",
+          "n": 5,
+          "n_detected": 4,
+          "recall": 0.8
+        },
+        {
+          "label": "Infiltration",
+          "phase": "lateral movement",
+          "n": 0,
+          "n_detected": 0,
+          "recall": null
+        },
+        {
+          "label": "Infiltration - Attempted",
+          "phase": "lateral movement",
+          "n": 0,
+          "n_detected": 0,
+          "recall": null
+        }
+      ],
+      "summary": {
+        "n": 2497,
+        "n_detected": 2492,
+        "recall": 0.998,
+        "largest_class": "PortScan",
+        "excluding_largest": {
+          "n": 103,
+          "n_detected": 102,
+          "recall": 0.9903
+        }
+      }
+    }
+  },
+  "cross_dataset": {
+    "dataset": "CIC-UNSW-NB15 (CIC-augmented), all rows",
+    "lstm_excluded_reason": "UNSW is anonymised; lacks Src IP/Timestamp required for sequence construction",
+    "rf": {
+      "per_class": [
+        {
+          "label": "Reconnaissance",
+          "phase": "internal network scanning",
+          "n": 16735,
+          "n_detected": 0,
+          "recall": 0.0
+        },
+        {
+          "label": "Exploits",
+          "phase": "exploitation for initial access",
+          "n": 30951,
+          "n_detected": 0,
+          "recall": 0.0
+        },
+        {
+          "label": "Shellcode",
+          "phase": "exploit payload delivery",
+          "n": 2102,
+          "n_detected": 0,
+          "recall": 0.0
+        },
+        {
+          "label": "Backdoor",
+          "phase": "persistent unauthorised access",
+          "n": 452,
+          "n_detected": 0,
+          "recall": 0.0
+        },
+        {
+          "label": "Worms",
+          "phase": "self-propagation",
+          "n": 246,
+          "n_detected": 0,
+          "recall": 0.0
+        }
+      ],
+      "summary": {
+        "n": 50486,
+        "n_detected": 0,
+        "recall": 0.0,
+        "largest_class": "Exploits",
+        "excluding_largest": {
+          "n": 19535,
+          "n_detected": 0,
+          "recall": 0.0
+        }
+      },
+      "fpr": 0.0
+    },
+    "ae": {
+      "per_class": [
+        {
+          "label": "Reconnaissance",
+          "phase": "internal network scanning",
+          "n": 16735,
+          "n_detected": 16732,
+          "recall": 0.9998
+        },
+        {
+          "label": "Exploits",
+          "phase": "exploitation for initial access",
+          "n": 30951,
+          "n_detected": 30948,
+          "recall": 0.9999
+        },
+        {
+          "label": "Shellcode",
+          "phase": "exploit payload delivery",
+          "n": 2102,
+          "n_detected": 2102,
+          "recall": 1.0
+        },
+        {
+          "label": "Backdoor",
+          "phase": "persistent unauthorised access",
+          "n": 452,
+          "n_detected": 439,
+          "recall": 0.9712
+        },
+        {
+          "label": "Worms",
+          "phase": "self-propagation",
+          "n": 246,
+          "n_detected": 246,
+          "recall": 1.0
+        }
+      ],
+      "summary": {
+        "n": 50486,
+        "n_detected": 50467,
+        "recall": 0.9996,
+        "largest_class": "Exploits",
+        "excluding_largest": {
+          "n": 19535,
+          "n_detected": 19519,
+          "recall": 0.9992
+        }
+      },
+      "fpr": 0.999994418583883
+    }
+  }
+}
