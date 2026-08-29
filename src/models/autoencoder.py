@@ -46,6 +46,7 @@ from src.evaluation.metrics import (
     BinaryMetrics,
     compute_binary_metrics,
     compute_per_class_metrics,
+    measure_inference_latency,
 )
 
 
@@ -163,6 +164,27 @@ def threshold_from_benign_percentile(
     if len(benign_errors) == 0:
         raise ValueError("No benign rows in validation set.")
     return float(np.percentile(benign_errors, percentile))
+
+# ---------- Inference wrapper ---------- #
+
+class AutoencoderClassifier:
+    """Wraps model, scaler and threshold behind a predict() interface.
+
+    Latency is measured end-to-end so the figure is comparable with the
+    Random Forest, whose predict() likewise covers its full inference path.
+    Timing the MLPRegressor alone would omit scaling and error computation,
+    which a deployed detector would still have to perform per flow.
+    """
+
+    def __init__(self, model: MLPRegressor, scaler: Pipeline, threshold: float):
+        self.model = model
+        self.scaler = scaler
+        self.threshold = threshold
+
+    def predict(self, X) -> np.ndarray:
+        X_scaled = self.scaler.transform(X)
+        errors = reconstruction_error(self.model, X_scaled)
+        return (errors > self.threshold).astype(int)
 
 
 # ---------- Training ---------- #
@@ -293,13 +315,19 @@ def main() -> int:
     # ROC-AUC and PR-AUC are rank-based and don't require values in [0, 1]
     y_test_proba = test_errors
 
-    # ---- Metrics ---- #
+        # ---- Metrics ---- #
     print(f"\nEvaluating on test set (n={len(X_test):,})...")
+
+    print(f"  Measuring per-flow inference latency (n=100)...")
+    classifier = AutoencoderClassifier(model, scaler, threshold)
+    inference_ms = measure_inference_latency(classifier, X_test, n_repeats=100)
+    print(f"  Median per-flow latency: {np.median(inference_ms):.3f} ms")
+
     binary_metrics = compute_binary_metrics(
         y_true=y_test_bin.values,
         y_pred=y_test_pred,
         y_proba=y_test_proba,
-        inference_times_ms=None,  # AE latency measured separately if needed
+        inference_times_ms=inference_ms,
     )
 
     # Per-class breakdown

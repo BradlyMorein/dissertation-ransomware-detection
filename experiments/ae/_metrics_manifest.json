@@ -21,7 +21,7 @@
   "training": {
     "filter": "Monday-only benign",
     "n_train_samples": 259858,
-    "fit_seconds": 45.68,
+    "fit_seconds": 28.34,
     "iterations_completed": 48,
     "final_loss": 0.003967167463553175
   },
@@ -39,8 +39,8 @@
       "roc_auc": 0.9203888578211408,
       "pr_auc": 0.5925172411882241,
       "fpr": 0.05055211462721188,
-      "inference_ms_median": NaN,
-      "inference_ms_p95": NaN,
+      "inference_ms_median": 0.6711680000535125,
+      "inference_ms_p95": 0.7722881998461162,
       "n_test_samples": 314761,
       "n_test_attack": 66443,
       "n_test_benign": 248318
