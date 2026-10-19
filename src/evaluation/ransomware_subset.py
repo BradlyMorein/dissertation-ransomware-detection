@@ -398,8 +398,9 @@ def main() -> int:
         "cross_dataset": {
             "dataset": "CIC-UNSW-NB15 (CIC-augmented), all rows",
             "lstm_excluded_reason": (
-                "UNSW is anonymised; lacks Src IP/Timestamp required for "
-                "sequence construction"
+                "CIC-UNSW-NB15 was distributed without identifier columns; "
+                "Src IP and Timestamp are absent, so sequence construction "
+                "is not possible"
             ),
             "rf": cross["rf"],
             "ae": cross["ae"],

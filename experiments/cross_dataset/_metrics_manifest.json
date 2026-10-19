@@ -6,14 +6,14 @@
   "n_attack_samples": 89583,
   "n_benign_samples": 358332,
   "attack_rate": 0.2,
-  "lstm_excluded_reason": "UNSW is anonymised; lacks Src IP/Timestamp required for sequence construction",
+  "lstm_excluded_reason": "CIC-UNSW-NB15 was distributed without identifier columns; Src IP and Timestamp are absent, so sequence construction is not possible",
   "rf": {
     "accuracy": 0.8,
     "precision": 0.0,
     "recall": 0.0,
     "f1": 0.0,
-    "roc_auc": 0.38355311268156383,
-    "pr_auc": 0.18484319463846693,
+    "roc_auc": 0.3835530074182602,
+    "pr_auc": 0.18483992118892179,
     "fpr": 0.0,
     "n_test_samples": 447915,
     "n_test_attack": 89583,
@@ -22,7 +22,7 @@
     "fp": 0,
     "fn": 89583,
     "tp": 0,
-    "bulk_predict_seconds": 1.523
+    "bulk_predict_seconds": 1.487
   },
   "ae": {
     "accuracy": 0.19993748813949075,
@@ -39,7 +39,7 @@
     "fp": 358330,
     "fn": 30,
     "tp": 89553,
-    "bulk_predict_seconds": 0.425,
+    "bulk_predict_seconds": 0.418,
     "threshold_used": 0.0970091284551957,
     "error_median": 0.53584551261222,
     "error_p95": 1.3874201775836854

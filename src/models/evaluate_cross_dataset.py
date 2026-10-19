@@ -5,7 +5,8 @@ the held-out CIC-UNSW-NB15 dataset.
 This is the genuine generalisation test for my dissertation's three-way
 comparison study. RF and AE were trained on CIC-IDS2017; this script applies
 them unchanged to CIC-UNSW-NB15 (different sources, different attack types,
-no LSTM because UNSW is anonymised and lacks Src IP/Timestamp metadata).
+no LSTM because CIC-UNSW-NB15 was distributed without identifier columns,
+so Src IP and Timestamp are absent).
 
 Run from the repository root:
 
@@ -235,7 +236,7 @@ def main() -> int:
         "n_attack_samples": int(y_binary.sum()),
         "n_benign_samples": int(len(y_binary) - y_binary.sum()),
         "attack_rate": float(y_binary.mean()),
-        "lstm_excluded_reason": "UNSW is anonymised; lacks Src IP/Timestamp required for sequence construction",
+        "lstm_excluded_reason": "CIC-UNSW-NB15 was distributed without identifier columns; Src IP and Timestamp are absent, so sequence construction is not possible",
         "rf": rf_metrics,
         "ae": ae_metrics,
     }
