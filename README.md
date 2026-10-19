@@ -8,7 +8,6 @@ validation). See `docs/decisions/` for ADRs documenting the dataset choices.
 **Author:** Bradly Morein (UP2088701)
 **Programme:** MSc Cybersecurity and Data Forensics, University of Portsmouth
 **Supervisor:** Dr Linda Yang
-**Submission deadline:** 8 July 2026 (working target 6 July)
 
 ---
 
@@ -28,48 +27,134 @@ validation). See `docs/decisions/` for ADRs documenting the dataset choices.
 
 ## Repository structure
 
+```
 .
-├── data/              # raw, interim, processed — gitignored except READMEs
-├── notebooks/         # exploratory analysis (Jupyter)
-├── src/               # production code
-├── experiments/       # configuration-driven runs, logs, checkpoints
-├── reports/           # figures and tables destined for the dissertation
+├── data/              # raw, interim, processed — gitignored, see data/README.md
+├── docs/decisions/    # architecture decision records (ADRs)
+├── notebooks/         # exploratory analysis and the Colab LSTM notebook
+├── src/               # pipeline code
+├── experiments/       # run manifests and saved predictions
+├── reports/           # figures and tables used in the dissertation
 ├── tests/             # unit tests for pipeline code
-├── scripts/           # one-off scripts (data download, setup)
-├── environment.yml            # human-readable environment spec
-├── environment.lock.yml       # conda lockfile (exact versions)
-├── requirements.lock.txt      # pip lockfile
-└── ENVIRONMENT.md             # host machine and setup documentation
+├── verify_results.py        # reconciles reported metrics against manifests
+├── verify_partitions.py     # checks the train/val/test folds are disjoint
+├── verify_predictions.py    # recomputes every metric from saved predictions
+├── environment.yml          # human-readable environment spec
+├── environment.lock.yml     # conda lockfile (exact versions)
+├── requirements.lock.txt    # pip lockfile
+└── ENVIRONMENT.md           # host machine and setup documentation
+```
 
 ---
 
-## Reproducing this work
+## What can be reproduced from a clone
 
-1. Install Miniforge: https://github.com/conda-forge/miniforge
-2. Clone this repo: `git clone <repo-url>`
-3. Create the environment: `conda env create -f environment.lock.yml`
-4. Activate: `conda activate ransomware-detection`
-5. Acquire the datasets: see `data/README.md`
-6. Run the pipeline: (documented in later weeks as it's built)
+The datasets and the trained model binaries are excluded from version control
+because of their size. What is included determines what a fresh clone can do
+without downloading anything further.
+
+**Runs from a clone, no datasets required**
+
+| Command | What it does |
+|---|---|
+| `python -m pytest tests/ -v` | 97 unit tests over the preprocessing, split, sequence construction and model configuration code. Uses synthetic fixtures. |
+| `python3 verify_results.py` | Recomputes every reported metric from the confusion matrix counts in the experiment manifests and compares them against the recorded values. |
+| `python3 verify_predictions.py` | Recounts each confusion matrix from the saved per-flow predictions, recomputes all metrics, and recalculates ROC-AUC and PR-AUC from the stored probabilities without calling scikit-learn. |
+
+**Requires the datasets**
+
+| Command | What it does |
+|---|---|
+| `python3 verify_partitions.py` | Hashes every row and confirms the three folds are disjoint. Reads the partition files. |
+| The pipeline below | Regenerates everything from the raw captures. |
 
 ---
 
-## Status
+## Reproducing this work in full
 
-- [x] Week 1 — Environment and repository setup
-- [ ] Week 1 — Dataset acquisition, EDA
-- [ ] Week 2 — Preprocessing pipeline
-- [ ] Week 3 — Random Forest training and tuning
-- [ ] Week 4 — Autoencoder training and tuning
-- [ ] Week 5 — LSTM training and tuning
-- [ ] Week 6 — Evaluation pipeline, statistical tests
-- [ ] Week 7 — Cross-dataset validation
-- [ ] Weeks 8–10 — Writing
-- [ ] Week 11 — Polish and submission
+### 1. Environment
+
+```bash
+# Miniforge: https://github.com/conda-forge/miniforge
+git clone git@github.com:BradlyMorein/dissertation-ransomware-detection.git
+cd dissertation-ransomware-detection
+conda env create -f environment.lock.yml
+conda activate ransomware-detection
+```
+
+See `ENVIRONMENT.md` for the host specification the results were produced on.
+
+### 2. Datasets
+
+Acquisition instructions are in `data/README.md`. Two sources are needed:
+
+- **CIC-IDS2017**, with the corrections published by Engelen et al. (2021)
+- **CIC-UNSW-NB15**, the CICFlowMeter-derived release
+
+### 3. Pipeline
+
+Run from the repository root, in this order:
+
+```bash
+python -m src.preprocessing.csv_to_parquet      # raw CSV -> interim parquet
+python -m src.preprocessing.clean               # clean CIC-IDS2017
+python -m src.preprocessing.clean_unsw          # clean CIC-UNSW-NB15
+python -m src.preprocessing.split               # stratified train/val/test split
+python -m src.preprocessing.sequences           # build 10-flow sequences for the LSTM
+```
+
+Each stage writes a manifest to its output directory recording row counts,
+drops and timings.
+
+### 4. Models
+
+```bash
+python -m src.models.random_forest              # Random Forest, local
+python -m src.models.autoencoder                # Autoencoder, local
+```
+
+The LSTM was trained on Google Colab. Open
+`notebooks/lstm_train_colab.ipynb` and run it there, then place the resulting
+`model.pt` and `predictions.npz` in `experiments/lstm/`.
+
+### 5. Evaluation
+
+```bash
+python -m src.models.evaluate_cross_dataset     # apply RF and AE to CIC-UNSW-NB15
+python -m src.evaluation.ransomware_subset      # per-class recall on the ransomware-indicative subset
+```
+
+### 6. Verification
+
+```bash
+python -m pytest tests/ -v
+python3 verify_results.py
+python3 verify_partitions.py
+python3 verify_predictions.py
+```
+
+The three verification scripts append to `verification_report.md` in the order
+listed. `test_results.txt` holds the captured test suite output.
+
+---
+
+## Determinism
+
+The split, the Random Forest and the Autoencoder all use seed 42 and reproduce
+exactly between runs.
+
+The Random Forest's *predicted probabilities* are the one exception. It
+averages across 200 trees using eight parallel threads, and floating-point
+addition is not associative, so the summation order varies between runs and the
+probabilities differ in their final bits. The resulting class predictions are
+identical, and the threshold-dependent metrics are therefore exactly
+reproducible, but ROC-AUC and PR-AUC — which are computed from the
+probabilities — vary in the seventh decimal place. The Autoencoder is a single
+forward pass with no parallel reduction and is bit-for-bit deterministic.
 
 ---
 
 ## Licence
 
-This is academic work prepared for assessment at the University of Portsmouth.
-Not licensed for external use or redistribution during the assessment period.
+Academic work prepared for assessment at the University of Portsmouth.
+Not licensed for external use or redistribution.
